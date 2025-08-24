@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ES2022"
+    ], // ES2020 in earlier versions
+    "module": "ES2022", //ESNext
+    "moduleResolution": "Node",
+    "target": "ES2022", // ES2020 in earlier versions
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "verbatimModuleSyntax": false,
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "rootDirs": [
+      "src",
+      "tests"
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@schemas/*": [
+        "db/schemas/*"
+      ],
+      "@/interfaces/*": [
+        "./src/models/*.ts"
+      ],
+      "@/modules/*": [
+        "modules/*"
+      ]
+    }
+  },
+  "include": [
+    "src",
+    "tests"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
