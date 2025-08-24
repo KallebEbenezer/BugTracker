@@ -25,12 +25,16 @@
       "@schemas/*": [
         "db/schemas/*"
       ],
-      "@/interfaces/*": [
-        "./src/models/*.ts"
+      "@interfaces/*": [
+        "modules/*.ts"
       ],
       "@/modules/*": [
-        "modules/*"
-      ]
+        "modules/*.ts"
+      ],
+      "@bugs_repositories/*": [
+        "modules/bugs/repositories/*.ts"
+      ],
+      "@bugs_service/*": ["modules/bugs/services/*.ts"]
     }
   },
   "include": [
