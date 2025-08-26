@@ -5,7 +5,7 @@ import { programming_languageTable } from "@schemas/programming_anguage.schema";
 export const bugsTable = pgTable("bugs", {
   id: varchar('id', { length: 36 }).primaryKey().notNull(),
   title: varchar('title', { length: 35 }).notNull(),
-  status: varchar('status', { length: 10, enum: ["pending", "progress", "resolved",] })
+  status: varchar('status', { length: 10 })
     .notNull(),
   description: varchar('description', { length: 120 }).notNull(),
   resolution: varchar('resolution', { length: 500 }).notNull(),

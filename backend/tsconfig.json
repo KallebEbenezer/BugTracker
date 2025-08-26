@@ -21,7 +21,7 @@
     "paths": {
       "@/*": [
         "./*"
-      ],
+      ],  
       "@schemas/*": [
         "db/schemas/*"
       ],
@@ -32,9 +32,11 @@
         "modules/*.ts"
       ],
       "@bugs_repositories/*": [
-        "modules/bugs/repositories/*.ts"
+        "modules/bugs/infra/*.ts"
       ],
-      "@bugs_service/*": ["modules/bugs/services/*.ts"]
+      "@bugs_service/*": [
+        "modules/bugs/services/*.ts"
+      ],
     }
   },
   "include": [

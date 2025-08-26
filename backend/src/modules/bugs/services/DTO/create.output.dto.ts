@@ -1,9 +1,5 @@
 export interface BugOutputDTO {
   title: string;
-  status: "pending" | "progress" | "resolved";
+  status: string;
   created_at: Date;
-}
-
-export interface BugInputDTO {
-  
 }

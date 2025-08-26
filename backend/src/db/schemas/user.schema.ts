@@ -1,7 +1,7 @@
 import { pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
 
 export const userTable = pgTable("user", {
-  id: varchar('id', { length: 36 }).primaryKey().notNull().unique(),
+  id: varchar('id', { length: 36 }).primaryKey().notNull(),
   username: varchar('username', { length: 15 }).notNull().unique(),
   email: varchar('email', { length: 100 }).notNull().unique(),
   phone: varchar('phone', { length: 20}).notNull().unique(),
