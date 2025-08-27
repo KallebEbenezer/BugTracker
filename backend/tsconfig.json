@@ -37,6 +37,9 @@
       "@bugs_service/*": [
         "modules/bugs/services/*.ts"
       ],
+      "@plugins/*s": [
+        "plugins/*"
+      ]
     }
   },
   "include": [

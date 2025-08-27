@@ -14,4 +14,4 @@ export const bugsTable = pgTable("bugs", {
     .references(() => programming_languageTable.id),
   created_at: timestamp('created_at').defaultNow().notNull(),
   updated_at: timestamp('updated_at').defaultNow().notNull()
-});
+}); 
