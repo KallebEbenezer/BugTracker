@@ -37,7 +37,7 @@ export function Find_Bug(
   searchableFields: Contracts.Find_Bug["Searchable_Fields"]
 ) {
   try{
-    const result = await Repository_Find(searchableFields);
+    // const result = await Repository_Find(searchableFields);
   }
   catch(error) {
     if(error instanceof CustomError) throw error
