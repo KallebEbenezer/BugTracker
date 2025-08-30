@@ -8,3 +8,5 @@ export const BugBodySchema = z.object({
   technology: z.string().min(1, "no mínimo 1 caractere").max(50, "no máximo 50 caracteres"),
   programming_language: z.string().min(1, "no mínimo 1 caractere").max(30, "no máximo 30 carcteres")
 })
+
+export type CreateBugInput = z.infer<typeof BugBodySchema>;

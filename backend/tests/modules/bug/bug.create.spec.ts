@@ -1,4 +1,4 @@
-import * as BugService from "@/modules/bugs/services/implementation/bug.service.implementation";
+import * as BugService from "@/modules/bugs/application/services/implementation/bug.service.implementation";
 import { describe, expect, it } from "vitest";
 import { Create_Bug_Moock } from "./moocks/bugs.repo.moocks";
 

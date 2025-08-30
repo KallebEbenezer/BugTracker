@@ -1,14 +1,14 @@
 import { db } from "@/db/connection";
-import * as Contracts from "@/modules/bugs/services/bug.contracts";
-import * as crypto from "crypto";
-import { BugOutputDTO } from "../DTO/create.output.dto";
 import { CustomError } from "@/Errors/CustomerError";
-import { SearchableFields } from "../DTO/searchableFields.dto";
+import * as Contracts from "@/modules/bugs/domain/contracts/bug.services.contracts";
+import * as crypto from "crypto";
+import { Bug } from "@/modules/bugs/domain/entities/Bug";
+import { CreatedBugDTO } from "@/modules/bugs/domain/contracts/CreatedBug";
 
 export async function Create_Bug(
   Repository_Create: Contracts.Create_Bug["Repository_Create"],
   Bug: Contracts.Create_Bug["Bug"]
-): Promise<BugOutputDTO[]> {
+): Promise<CreatedBugDTO[]> {
   try {
     const { technology, programming_language, ...bugObj } = Bug
 
@@ -22,8 +22,6 @@ export async function Create_Bug(
 
     const result = await Repository_Create(newBug, db);
 
-    console.log(result)//depure only;
-    
     return { ...result };
   }
   catch (error) {
@@ -32,15 +30,16 @@ export async function Create_Bug(
   }
 }
 
-export function Find_Bug(
+export async function Find_Bug(
   Repository_Find: Contracts.Find_Bug["Repository_Find"],
-  searchableFields: Contracts.Find_Bug["Searchable_Fields"]
-) {
-  try{
-    // const result = await Repository_Find(searchableFields);
+  fields: Contracts.Find_Bug["Fields"]
+): Promise<Bug[]> {
+  try {
+    const response = await Repository_Find({ status: fields.status });
+    return response
   }
-  catch(error) {
-    if(error instanceof CustomError) throw error
+  catch (error) {
+    if (error instanceof CustomError) throw error
     throw new Error("Was not possible find a bug");
   }
 }

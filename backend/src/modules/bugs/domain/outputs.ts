@@ -7,3 +7,5 @@ export const create_bug_output_200 = z.object({
     created_at: z.date()
   })
 });
+
+export type CreatedBug = z.infer<typeof create_bug_output_200>;
