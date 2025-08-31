@@ -24,7 +24,7 @@ export async function Create_Bug(
       const newBug = {
         id: crypto.randomUUID(),
         programming_language_id: language[0]?.id,
-        technology_id: "4",
+        technology_id: "4", //hard coded -test only
         ...bugObj
       };
 
