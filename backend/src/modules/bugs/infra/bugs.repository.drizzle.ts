@@ -51,7 +51,8 @@ export async function FindBug(fields: Partial<SearchableFields>): Promise<Bug[]>
       return [];
     });
 
-    const result = await db.select().from(bugsTable)
+    const result = await db
+      .select().from(bugsTable)
       .where(and(...conditions))
       .catch((error) => {
         throw new CustomError({

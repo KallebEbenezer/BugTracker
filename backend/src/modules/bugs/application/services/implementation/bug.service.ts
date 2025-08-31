@@ -8,7 +8,7 @@ import * as crypto from "crypto";
 export async function Create_Bug(
   Repository_Create: Contracts.Create_Bug["Repository_Create"],
   Language_Repo_Find: ILanguageRepo.Find_Language["repository_find"],
-  User_Bug_Relation: Contracts.Create_Bug["User_Bug_Relation_Repo"]
+  Create_User_Bug_Relation: Contracts.Create_Bug["User_Bug_Relation_Repo"]
 ) {
   return async function (Bug: Contracts.Create_Bug["Bug"]) {
     try {
@@ -31,7 +31,7 @@ export async function Create_Bug(
 
       const new_bug = await Repository_Create(bugToSave, db);
 
-      await User_Bug_Relation({
+      await Create_User_Bug_Relation({
         id: crypto.randomUUID(),
         user_id: "123123123", //hard coded -test only 
         bug_id: new_bug.id

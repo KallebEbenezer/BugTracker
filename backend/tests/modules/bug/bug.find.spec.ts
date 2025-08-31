@@ -1,4 +1,4 @@
-import * as BugServices from "@/modules/bugs/application/services/implementation/bug.service.implementation";
+import * as BugServices from "@/modules/bugs/application/services/implementation/bug.service";
 import * as BugRepository from "modules/bugs/infra/bugs.repository.drizzle";
 import { describe, expect, it } from "vitest";
 

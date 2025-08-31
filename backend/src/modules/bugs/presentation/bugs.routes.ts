@@ -4,7 +4,7 @@ import { create_bug_output_200 } from "../domain/outputs";
 
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 
-import * as BugControllers from "@/modules/bugs/presentation/bug.controllers";
+import * as BugControllers from "@/modules/bugs/presentation/bug.controller";
 
 export function BugRoutes(fastifyInstance: FastifyInstance) {
   fastifyInstance.withTypeProvider<ZodTypeProvider>().post(

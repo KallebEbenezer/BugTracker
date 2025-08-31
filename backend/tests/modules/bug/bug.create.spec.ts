@@ -1,4 +1,4 @@
-import * as BugService from "@/modules/bugs/application/services/implementation/bug.service.implementation";
+import * as BugService from "@/modules/bugs/application/services/implementation/bug.service";
 import * as LanguageRepo from "@/modules/programming-languages/infra/programming_language.repository";
 
 import { describe, expect, it } from "vitest";
