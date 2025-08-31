@@ -1,11 +1,11 @@
 import { ClientDb } from "@/db/connection";
 import { Bug, BugInsert } from "@/modules/bugs/domain/entities/Bug";
-import { CreatedBugDTO } from "./CreatedBug";
-import { CreateBugInput } from "../entries";
 import { SearchableFields } from "../../application/services/DTO/searchableFields.dto";
+import { CreateBugInput } from "../entries";
+import { CreatedBugDTO } from "./CreatedBug";
 
 export interface Create_Bug {
-  Repository_Create: (bugDataProps: BugInsert, Drizzle_Client: ClientDb) => Promise<CreatedBugDTO             []>;
+  Repository_Create: (bugDataProps: BugInsert, Drizzle_Client: ClientDb) => Promise<CreatedBugDTO>;
   Bug: CreateBugInput;
 }
 

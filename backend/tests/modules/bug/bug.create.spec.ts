@@ -10,14 +10,14 @@ describe("Testing methods in bugs entity", () => {
     resolution: "resolution hsfkafhkjfhlsdkjf",
     technology: "drizzle",
     programming_language: "typescript"
-  }
+  };
 
   it("Must return a new bug", async () => {
     const result = await BugService.Create_Bug(Create_Bug_Moock, newBug);
 
-    console.log(result)
+    console.log(result);
 
     expect(result).toBeDefined();
-    expect(result[0].title).toBe("title");
+    expect(result.title).toBe("title");
   });
 })

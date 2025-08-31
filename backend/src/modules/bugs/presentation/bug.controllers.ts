@@ -2,11 +2,11 @@ import { CustomError } from "@/Errors/CustomerError";
 import * as BugServices from "@/modules/bugs/application/services/implementation/bug.service.implementation";
 import * as BugRepository from "@/modules/bugs/infra/bugs.repository.drizzle";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { BugInputDTO } from "../../application/services/DTO/create.input.dto";
+import { CreateBugInput } from "../domain/entries";
 
 export const create_bug = async (req: FastifyRequest, reply: FastifyReply) => {
   try {
-    const data = req.body as BugInputDTO;
+    const data = req.body as CreateBugInput;
 
     const response = await BugServices.Create_Bug(BugRepository.CreateBug, data);
 

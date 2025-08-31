@@ -1,14 +1,14 @@
 import { db } from "@/db/connection";
 import { CustomError } from "@/Errors/CustomerError";
 import * as Contracts from "@/modules/bugs/domain/contracts/bug.services.contracts";
-import * as crypto from "crypto";
-import { Bug } from "@/modules/bugs/domain/entities/Bug";
 import { CreatedBugDTO } from "@/modules/bugs/domain/contracts/CreatedBug";
+import { Bug } from "@/modules/bugs/domain/entities/Bug";
+import * as crypto from "crypto";
 
 export async function Create_Bug(
   Repository_Create: Contracts.Create_Bug["Repository_Create"],
   Bug: Contracts.Create_Bug["Bug"]
-): Promise<CreatedBugDTO[]> {
+): Promise<CreatedBugDTO> {
   try {
     const { technology, programming_language, ...bugObj } = Bug
 
@@ -25,10 +25,10 @@ export async function Create_Bug(
     return { ...result };
   }
   catch (error) {
-    if (error instanceof CustomError) throw error
+    if (error instanceof CustomError) throw error;
     throw new Error("Error");
-  }
-}
+  };
+};
 
 export async function Find_Bug(
   Repository_Find: Contracts.Find_Bug["Repository_Find"],
@@ -41,5 +41,5 @@ export async function Find_Bug(
   catch (error) {
     if (error instanceof CustomError) throw error
     throw new Error("Was not possible find a bug");
-  }
-}
+  };
+};

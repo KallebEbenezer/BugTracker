@@ -3,8 +3,8 @@ import { bugsTable } from "@/db/schemas/bug.schema";
 import { CustomError } from "@/Errors/CustomerError";
 import { Bug, BugInsert } from "@/modules/bugs/domain/entities/Bug";
 import { and, eq } from "drizzle-orm";
-import { CreatedBugDTO } from "../domain/contracts/CreatedBug";
 import { SearchableFields } from "../application/services/DTO/searchableFields.dto";
+import { CreatedBugDTO } from "../domain/contracts/CreatedBug";
 
 export async function CreateBug(bugDataProps: BugInsert, Drizzle_Client: ClientDb): Promise<CreatedBugDTO[]> {
   try {
@@ -33,7 +33,7 @@ export async function CreateBug(bugDataProps: BugInsert, Drizzle_Client: ClientD
     throw new Error("Was not possible register a bug");
   }
 }
-                                      
+
 export async function FindBug(fields: Partial<SearchableFields>): Promise<Bug[]> {
   try {
     const allowedFilters: Partial<Record<keyof typeof bugsTable, any>> = {
