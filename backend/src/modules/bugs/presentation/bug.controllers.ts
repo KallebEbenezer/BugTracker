@@ -1,16 +1,15 @@
 import { CustomError } from "@/Errors/CustomerError";
-import * as BugServices from "@/modules/bugs/application/services/implementation/bug.service.implementation";
-import * as BugRepository from "@/modules/bugs/infra/bugs.repository.drizzle";
+import { bugUseCases } from "../application/use-cases/bugs_use_cases";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { CreateBugInput } from "../domain/entries";
 
 export const create_bug = async (req: FastifyRequest, reply: FastifyReply) => {
   try {
     const data = req.body as CreateBugInput;
+  
+    const response = await  bugUseCases.create(data);
 
-    const response = await BugServices.Create_Bug(BugRepository.CreateBug, data);
-
-    reply.status(200).send({ created_bug: response[0] });
+    reply.status(200).send({ created_bug: response });
   }
   catch (error) {
     if (error instanceof CustomError) {

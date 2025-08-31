@@ -1,0 +1,1 @@
+ALTER TABLE "user_bugs_relations" ADD COLUMN "id" varchar(36) PRIMARY KEY NOT NULL;

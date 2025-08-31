@@ -1,4 +1,6 @@
 import * as BugService from "@/modules/bugs/application/services/implementation/bug.service.implementation";
+import * as LanguageRepo from "@/modules/programming-languages/infra/programming_language.repository";
+
 import { describe, expect, it } from "vitest";
 import { Create_Bug_Moock } from "./moocks/bugs.repo.moocks";
 
@@ -13,7 +15,7 @@ describe("Testing methods in bugs entity", () => {
   };
 
   it("Must return a new bug", async () => {
-    const result = await BugService.Create_Bug(Create_Bug_Moock, newBug);
+    const result = await BugService.Create_Bug(Create_Bug_Moock, LanguageRepo.Find_Language, newBug);
 
     console.log(result);
 

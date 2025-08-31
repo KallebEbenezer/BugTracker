@@ -6,9 +6,9 @@ import { and, eq } from "drizzle-orm";
 import { SearchableFields } from "../application/services/DTO/searchableFields.dto";
 import { CreatedBugDTO } from "../domain/contracts/CreatedBug";
 
-export async function CreateBug(bugDataProps: BugInsert, Drizzle_Client: ClientDb): Promise<CreatedBugDTO[]> {
+export async function CreateBug(bugDataProps: BugInsert, Drizzle_Client: ClientDb): Promise<CreatedBugDTO> {
   try {
-    const response = await Drizzle_Client.insert(bugsTable).values(bugDataProps)
+    const [response] = await Drizzle_Client.insert(bugsTable).values(bugDataProps)
       .returning({
         title: bugsTable.title,
         status: bugsTable.status,

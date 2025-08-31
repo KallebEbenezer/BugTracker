@@ -32,7 +32,7 @@ export async function Create_Language(
 export async function Find_Language(
   language_name: string,
   clientDb: ClientDb
-) {
+): Promise<Language[]> {
   try {
     const result = await clientDb
       .select()

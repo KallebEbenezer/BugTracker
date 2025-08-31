@@ -1,32 +1,41 @@
 import { db } from "@/db/connection";
 import { CustomError } from "@/Errors/CustomerError";
 import * as Contracts from "@/modules/bugs/domain/contracts/bug.services.contracts";
-import { CreatedBugDTO } from "@/modules/bugs/domain/contracts/CreatedBug";
 import { Bug } from "@/modules/bugs/domain/entities/Bug";
+import * as ILanguageRepo from "@/modules/programming-languages/domain/contracts/programming_languages.contracts";
 import * as crypto from "crypto";
 
 export async function Create_Bug(
   Repository_Create: Contracts.Create_Bug["Repository_Create"],
-  Bug: Contracts.Create_Bug["Bug"]
-): Promise<CreatedBugDTO> {
-  try {
-    const { technology, programming_language, ...bugObj } = Bug
+  Language_Repo_Find: ILanguageRepo.Find_Language["repository_find"]
+) {
+  return async function (Bug: Contracts.Create_Bug["Bug"]) {
+    try {
+      const { technology, programming_language, ...bugObj } = Bug;
 
-    //hard coded -test only
-    const newBug = {
-      id: crypto.randomUUID(),
-      programming_language_id: "4",
-      technology_id: "4",
-      ...bugObj
+      const language = await Language_Repo_Find(Bug.programming_language, db);
+
+      if (language.length <= 0) throw new CustomError({
+        message: "Linguagem não encontrada",
+        statusCode: 409,
+        origin: "service"
+      });
+
+      const newBug = {
+        id: crypto.randomUUID(),
+        programming_language_id: language[0]?.id,
+        technology_id: "4",
+        ...bugObj
+      };
+
+      const result = await Repository_Create(newBug, db);
+
+      return { ...result };
+    }
+    catch (error) {
+      if (error instanceof CustomError) throw error;
+      throw new Error("Error");
     };
-
-    const result = await Repository_Create(newBug, db);
-
-    return { ...result };
-  }
-  catch (error) {
-    if (error instanceof CustomError) throw error;
-    throw new Error("Error");
   };
 };
 
