@@ -10,6 +10,7 @@ export async function CreateBug(bugDataProps: BugInsert, Drizzle_Client: ClientD
   try {
     const [response] = await Drizzle_Client.insert(bugsTable).values(bugDataProps)
       .returning({
+        id: bugsTable.id,
         title: bugsTable.title,
         status: bugsTable.status,
         created_at: bugsTable.created_at

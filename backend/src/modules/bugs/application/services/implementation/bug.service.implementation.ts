@@ -7,7 +7,8 @@ import * as crypto from "crypto";
 
 export async function Create_Bug(
   Repository_Create: Contracts.Create_Bug["Repository_Create"],
-  Language_Repo_Find: ILanguageRepo.Find_Language["repository_find"]
+  Language_Repo_Find: ILanguageRepo.Find_Language["repository_find"],
+  User_Bug_Relation: Contracts.Create_Bug["User_Bug_Relation_Repo"]
 ) {
   return async function (Bug: Contracts.Create_Bug["Bug"]) {
     try {
@@ -21,19 +22,30 @@ export async function Create_Bug(
         origin: "service"
       });
 
-      const newBug = {
+      const bugToSave = {
         id: crypto.randomUUID(),
         programming_language_id: language[0]?.id,
         technology_id: "4", //hard coded -test only
         ...bugObj
       };
 
-      const result = await Repository_Create(newBug, db);
+      const new_bug = await Repository_Create(bugToSave, db);
 
-      return { ...result };
+      await User_Bug_Relation({
+        id: crypto.randomUUID(),
+        user_id: "123123123", //hard coded -test only 
+        bug_id: new_bug.id
+      },
+        db
+      );
+
+      return { ...new_bug };
     }
     catch (error) {
-      if (error instanceof CustomError) throw error;
+      if (error instanceof CustomError) {
+        console.log(error.errMessage);
+        throw error
+      }
       throw new Error("Error");
     };
   };
